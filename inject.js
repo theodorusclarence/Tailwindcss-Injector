@@ -1,58 +1,14 @@
-// var headID = document.getElementsByTagName('head')[0];
-// var link = document.createElement('link');
-// link.rel = 'stylesheet';
-// link.href = 'https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css';
-
-// headID.insertBefore(link, headID.firstChild);
-// console.log('loads');
-// browser.browserAction.onClicked.addListener(() => {
-//   console.log('clicked');
-// });
-
-// browser.browserAction.onClicked.addListener((tab) => {
-//   browser.tabs.executeScript(tab.id, {
-//     code: `document.body.style.border = "5px solid red"`,
-//   });
-// });
-// document.body.style.border = '5px solid blue';
-
-// function toggleDebugCSS(tab) {
-//   var e = '';
-//   e += 'document.body.style.border = "5px solid red"';
-//   browser.tabs.executeScript({
-//     code: e,
-//   });
-// }
-
-// browser.commands.onCommand.addListener(function (tab) {
-//   toggleDebugCSS(tab);
-// });
-// browser.browserAction.onClicked.addListener(function (tab) {
-//   toggleDebugCSS(tab);
-// });
-
-// browser.pageAction.onClicked.addListener(toggleDebugCSS);
-
-const CSS = 'body { border: 20px solid red; }';
 const TITLE_APPLY = 'Inject Tailwindcss';
-const TITLE_REMOVE = 'Remove CSS';
 const APPLICABLE_PROTOCOLS = ['http:', 'https:'];
+const CDN_LINK = 'https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css';
+const CODE = `var headID = document.getElementsByTagName('head')[0];var link = document.createElement('link');link.rel = 'stylesheet';link.href = '${CDN_LINK}';headID.insertBefore(link, headID.firstChild);const prevName = document.title; document.title = "Tailwindcss Injected";  setTimeout(function(){ document.title = prevName; }, 2000);`;
 
 /*
-Toggle CSS: based on the current title, insert or remove the CSS.
-Update the page action's title and icon to reflect its state.
+Inject Tailwindcss, will inject with CDN
 */
-function toggleCSS(tab) {
+function injectTailwind(tab) {
   function gotTitle(title) {
-    if (title === TITLE_APPLY) {
-      browser.pageAction.setTitle({ tabId: tab.id, title: TITLE_REMOVE });
-      browser.tabs.insertCSS({ code: CSS });
-      browser.tabs.executeScript({ code: 'console.log("hi");' });
-    } else {
-      browser.pageAction.setTitle({ tabId: tab.id, title: TITLE_APPLY });
-      browser.tabs.removeCSS({ code: CSS });
-      browser.tabs.executeScript({ code: 'console.log("hi");' });
-    }
+    browser.tabs.executeScript({ code: CODE });
   }
   var gettingTitle = browser.pageAction.getTitle({ tabId: tab.id });
   gettingTitle.then(gotTitle);
@@ -99,4 +55,4 @@ browser.tabs.onUpdated.addListener((id, changeInfo, tab) => {
 /*
 Toggle CSS when the page action is clicked.
 */
-browser.pageAction.onClicked.addListener(toggleCSS);
+browser.pageAction.onClicked.addListener(injectTailwind);
