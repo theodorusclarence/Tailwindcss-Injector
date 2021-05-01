@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Inject Tailwindcss",
+  "version": "1.0",
+
+  "description": "Inject tailwindcss classes from CDN",
+
+  "icons": {
+    "48": "icons/tailwindcss.png"
+  },
+
+  "permissions": ["activeTab", "tabs"],
+
+  "background": {
+    "scripts": ["inject.js"]
+  },
+
+  "page_action": {
+    "default_icon": "icons/tailwindcss.png",
+    "browser_style": true
+  }
+}
