@@ -3,7 +3,7 @@
   "name": "Inject Tailwindcss",
   "version": "1.0",
 
-  "description": "Inject tailwindcss classes from CDN",
+  "description": "Inject Tailwindcss classes from CDN. Made by Theodorus Clarence",
 
   "icons": {
     "48": "icons/tailwindcss.png"
