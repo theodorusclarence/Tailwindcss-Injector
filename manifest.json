@@ -6,7 +6,9 @@
   "description": "Inject Tailwindcss classes from CDN. Made by Theodorus Clarence",
 
   "icons": {
-    "48": "icons/tailwindcss.png"
+    "128": "icons/tailwindcss-injector-128.png",
+    "48": "icons/tailwindcss-injector-48.png",
+    "16": "icons/tailwindcss-injector-16.png"
   },
 
   "permissions": ["activeTab", "tabs"],
@@ -16,7 +18,11 @@
   },
 
   "page_action": {
-    "default_icon": "icons/tailwindcss.png",
+    "default_icon": {
+      "128": "icons/tailwindcss-injector-128.png",
+      "48": "icons/tailwindcss-injector-48.png",
+      "16": "icons/tailwindcss-injector-16.png"
+    },
     "browser_style": true
   }
 }
