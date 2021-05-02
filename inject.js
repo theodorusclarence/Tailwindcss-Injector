@@ -29,7 +29,7 @@ Only operates on tabs whose URL's protocol is applicable.
 */
 function initializePageAction(tab) {
   if (protocolIsApplicable(tab.url)) {
-    browser.pageAction.setIcon({ tabId: tab.id, path: 'icons/tailwindcss.png' });
+    browser.pageAction.setIcon({ tabId: tab.id, path: 'icons/tailwindcss-injector-48.png' });
     browser.pageAction.setTitle({ tabId: tab.id, title: TITLE_APPLY });
     browser.pageAction.show(tab.id);
   }
